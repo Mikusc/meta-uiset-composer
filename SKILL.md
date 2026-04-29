@@ -20,7 +20,12 @@ Use this skill for:
 Load only what the task needs:
 - `references/uiset-assets-and-scenes.md` for UISet package paths, sample scene structure, prefab choices, and QDS theme notes.
 - `references/layout-and-component-patterns.md` for learned component stacks, script mounting patterns, and official UISet layout rules from `UISet.unity` and `UISetPatterns.unity`.
+- `references/panel-recipes.md` for reusable dashboard, inspector, theme picker, dialog, and debug panel layouts.
 - `references/mcp-playbook.md` for Unity MCP and Meta MCP Extension command flow, validation, and known crash-avoidance rules.
+- `references/troubleshooting.md` for known UISet, Simulator, OpenXR, theme, ray/poke, and delivery checklist issues.
+
+Bundled script:
+- `scripts/validate_uiset_scene.py` checks a Unity scene YAML plus referenced prefabs for Simulator-ready UISet structure without broad Unity MCP component dumps.
 
 ## Preflight
 
@@ -77,7 +82,7 @@ Do not edit assets under `Library/PackageCache`. If customization is required, c
 5. Add `PointableCanvas`, ray interaction, and poke interaction only to the intended canvas.
 6. Wire UI controls through small adapter scripts under `Assets/Scripts/UI/`.
 7. Keep style data in ScriptableObjects or serializable project data, not in scene-only hardcoded branches.
-8. Validate console and hierarchy after each change set.
+8. Validate console, hierarchy, and bundled script output after each change set when filesystem scene YAML is available.
 
 For Meta MCP Extension canvas setup:
 - Use `meta_add_canvas_interaction_ray` for distance selection.
@@ -109,6 +114,7 @@ At minimum:
 - Confirm target scene and build settings.
 - Confirm the intended canvas is world-space.
 - Confirm ray/poke interactors exist only once per intended canvas.
+- Run `scripts/validate_uiset_scene.py <scene> --project-root <unity-project>` when validating a saved scene from disk.
 - Run a scene or camera capture when visual layout matters and Unity is stable.
 - If Quest/device validation is requested, follow the project's device validation docs and state what was actually run.
 

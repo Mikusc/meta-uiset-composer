@@ -25,7 +25,7 @@ Example Interaction SDK UISet package cache path:
 Library/PackageCache/com.meta.xr.sdk.interaction@<hash>/Runtime/Sample/Objects/UISet
 ```
 
-Known compatible package family from the inspected project:
+Known compatible package family from inspected SceneShift projects:
 
 ```text
 com.meta.xr.sdk.core 201.0.0

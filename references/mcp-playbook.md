@@ -95,6 +95,17 @@ Canvas: world-space, correct size and placement
 Interaction: ray/poke components present only where intended
 ```
 
+Saved-scene filesystem validation:
+
+```sh
+python3 /path/to/meta-uiset-composer/scripts/validate_uiset_scene.py \
+  Assets/Scenes/UISetSkillSandbox.unity \
+  --project-root /path/to/unity/project \
+  --expected-build-scene Assets/Scenes/MR_RoomStylization.unity
+```
+
+Use `--visual-only` only when the user explicitly accepts a non-interactive screenshot/mockup scene.
+
 Expected warning classification:
 - Scene/UI issue: `Theme index out of range`, `RayInteractable` or `PokeInteractable` missing `Surface`, duplicate EventSystem or duplicate canvas interaction paths.
 - Simulator/environment warning: unsupported OpenXR function pointers, Local Dimming unsupported, or action-set warnings from desktop runtime startup.
