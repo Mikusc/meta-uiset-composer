@@ -95,6 +95,10 @@ ISDK_PokeInteraction
 
 `EmptyUIBackplateWithCanvas` uses a variant where the root also carries `UIThemeManager`, `PokeInteractable`, `PointableCanvas`, `RayInteractable`, `AudioSource`, and `PointableCanvasUnityEventWrapper`. Its `CanvasRoot` is `500 x 500` and has a `HorizontalLayoutGroup` with `spacing=50`.
 
+When using this prefab as a copied panel shell, preserve the built-in interaction stack for Simulator and Quest testing. The official stack already gives the panel a `PointableCanvas`, ray path, poke path, event wrapper, and surface-backed interaction children. If `meta_add_canvas_interaction_ray` or `meta_add_canvas_interaction_poke` is run on top of this prefab, check for duplicate `ISDK_RayCanvasInteraction` or `ISDK_PokeCanvasInteraction` objects and remove the duplicate rather than removing the prefab's original interaction components.
+
+`UIThemeManager` is not part of the required interaction path. It can be removed when the copied prefab has no valid theme list or logs theme-index warnings, while leaving `PointableCanvas`, `RayInteractable`, `PokeInteractable`, and `PointableCanvasUnityEventWrapper` intact.
+
 ## Backplate And Section Stack
 
 Official panel cards use this visual stack:

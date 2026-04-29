@@ -83,6 +83,8 @@ For Meta MCP Extension canvas setup:
 - Use `meta_add_canvas_interaction_ray` for distance selection.
 - Use `meta_add_canvas_interaction_poke` for near-field hand/controller interaction.
 - The target GameObject must already have a world-space Unity `Canvas`.
+- For Simulator or Quest validation, ray and poke paths are part of the expected runtime contract. Do not remove `PointableCanvas`, `RayInteractable`, `PokeInteractable`, `PointableCanvasUnityEventWrapper`, or the interaction rig just because a physical headset is unavailable.
+- If a copied UISet prefab already includes valid ray/poke interactables and their surface children, verify them instead of blindly adding duplicate canvas interaction objects.
 
 ## SceneShift Defaults
 
@@ -90,7 +92,9 @@ When working in this repository:
 - Canonical scene: `Assets/Scenes/MR_RoomStylization.unity`.
 - Existing UI adapter to respect: `Assets/Scripts/UI/SceneShiftUISetDashboard.cs`.
 - Existing package samples may appear as `Assets/Scenes/UISet.unity` and `Assets/Scenes/UISetPatterns.unity`.
-- Existing dashboard behavior may intentionally disable inherited UISet runtime components such as `UIThemeManager`, `PointableCanvas`, `PokeInteractable`, `RayInteractable`, or `PointableCanvasUnityEventWrapper` for stability. Check current code before re-enabling them.
+- Simulator-first panels should include the same interaction-facing components expected on device: `OVRCameraRig`, an Interaction SDK rig, `PointableCanvas`, `RayInteractable`, `PokeInteractable`, and `PointableCanvasUnityEventWrapper` where the UISet prefab provides them.
+- Only remove inherited sample-only managers when they are demonstrably invalid in the copied prefab or scene. A common example is `UIThemeManager` copied with an empty theme list that logs `Theme index out of range`.
+- Disable ray/poke components only for an explicitly visual-only fallback, and state that the scene is not interaction-complete until the components are restored.
 
 ## MCP Safety
 
