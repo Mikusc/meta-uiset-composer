@@ -1,0 +1,4 @@
+interface:
+  display_name: "Meta UISet Composer"
+  short_description: "Compose Meta UISet panels in Unity"
+  default_prompt: "Use $meta-uiset-composer to build a Quest-ready Meta UISet panel in my Unity scene."
